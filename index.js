@@ -19,30 +19,25 @@ inquirer
             name: 'description',
             message: 'Provide a short description explaining the what, why, and how of your project.',
         },
-        // {
-        //     type: 'input',
-        //     name: 'table of contents',
-        //     message: '',
-        // },
         {
             type: 'input',
             name: 'installation',
-            message: 'What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.',
+            message: 'What are the steps required to install your project/get the development environment running?',
+        },
+        {
+            type: 'input',
+            name: 'image',
+            message: 'Paste the file path of an image you would like to include to provide an example of use, starting with "/image"',
         },
         {
             type: 'input',
             name: 'usage',
-            message: 'usage',
-        },
-        {
-            type: 'input',
-            name: 'license',
-            message: 'What license have you chosen for your project? If you have chosen a license for a project.',
+            message: 'Provide some instructions for the use of your applicatiton.',
         },
         {
             type: 'input',
             name: 'contributing',
-            message: 'If you would like for other developers to contribute to your application or package, you can include guidelines for how to do so here.',
+            message: 'Provide guidelines for other developers to contribute to your application or package.',
         },
         {
             type: 'input',
@@ -51,13 +46,23 @@ inquirer
         },
         {
             type: 'input',
-            name: 'questions',
-            message: 'Provide a way for other developers to get in touch with you if they have questions about your application.',
+            name: 'license',
+            message: 'What license have you chosen for your project? If you have chosen a license for a project.',
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your github username?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your e-mail?',
         },
     ])
     .then((data) => {
         fs.writeFile('README.md', generateMarkdown(data), (err) => 
-        err ? console.log(err) : console.log('Success!!')
+        err ? console.log(err) : console.log('Success!! Your README.md file has been generated with your inputs. Check it out!')
         );
     });
     
