@@ -1,22 +1,61 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-// function renderLicenseBadge(license) {}
+// Function that returns a license badge based on which license chosen
+// If there is no license, then returns an empty string
+function renderLicenseBadge(license) {
+  if (license === 'MIT') {
+    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`;
+  } else if (license === 'Apache') {
+    return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]`;
+  } else if (license === 'BSD') {
+    return `[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)]`;
+  } else if (license === 'Unlicense') {
+    return `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)]`;
+  } else if (license === 'None'){
+    return '';
+  };
+};
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-// function renderLicenseLink(license) {}
+// Function that returns the license link based on which license chosen
+// If there is no license, then returns an empty string
+function renderLicenseLink(license) { 
+  if (license === 'MIT') {
+     return `MIT License (https://opensource.org/licenses/MIT)`;
+  } else if (license === 'Apache') {
+     return `Apache 2.0 License (https://opensource.org/licenses/Apache-2.0)`;
+  } else if (license === 'BSD') {
+     return `BSD 2-Clause License (https://opensource.org/licenses/BSD-2-Clause)`;
+  } else if (license === 'Unlicense') {
+     return `The Unlicense (http://unlicense.org/)`;
+  } else if (license === 'None'){
+     return '';
+  };
+};
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-// function renderLicenseSection(license) {}
+// Function that returns the license section of README
+// If there is no license, then returns an empty string
+function renderLicenseSection(license) {
+  if (license === 'None') {
+    return '';
+  } else {
+    return `## License
+    
+    ${license}
+    `;
+  };
+};
 
-// TODO: Create a function to generate markdown for README
-const generateMarkdown = ({title, description, installation, image, usage, license, contributing, tests, github, email}) => {
-  return `# ${title}
+// Function to generate markdown for README
+const generateMarkdown = (data) => {
+
+  const badge = renderLicenseBadge(data.license);
+  const link = renderLicenseLink(data.license);
+
+  return `# ${data.title}
+
+  ${badge}
 
   ## Description
 
-  ${description}
+  ${data.description}
 
   ## Table of Contents
 
@@ -29,31 +68,29 @@ const generateMarkdown = ({title, description, installation, image, usage, licen
 
   ## Installation
 
-  ${installation}
+  ${data.installation}
 
   ## Usage
 
-  ![alt text](.${image})
+  ![alt text](.${data.image})
 
-  ${usage}
+  ${data.usage}
 
   ## Contributing
 
-  ${contributing}
+  ${data.contributing}
 
   ## Tests
 
-  ${tests}
+  ${data.tests}
 
-  ## License
-
-  ${license}
+  ${renderLicenseSection(link)} 
 
   ## Questions
 
-  GitHub Profile: https://github.com/${github}
+  GitHub Profile: https://github.com/${data.github}
 
-  E-mail: ${email}
+  If you have further questions about this application, I can be reached by e-mail: ${data.email}
 
 `;
 }
